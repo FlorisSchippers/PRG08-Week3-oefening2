@@ -2,7 +2,7 @@
 
 class Game {
 
-    private jibby : Jibby;
+    private jibby: Jibby;
 
     constructor() {
         let container = document.getElementById("container");
@@ -10,21 +10,22 @@ class Game {
         requestAnimationFrame(() => this.gameLoop());
     }
 
-    private gameLoop(){
+    private gameLoop() {
         this.jibby.update();
         this.updateUI();
         requestAnimationFrame(() => this.gameLoop());
     }
 
-    private updateUI():void{
-        document.getElementsByTagName("food")[0].innerHTML = Math.round(this.jibby.food).toString();
-        document.getElementsByTagName("happyness")[0].innerHTML = Math.round(this.jibby.happyness).toString();
-        document.getElementsByTagName("hygiene")[0].innerHTML = Math.round(this.jibby.hygiene).toString();
+    private updateUI(): void {
+        if (this.jibby.status == true) {
+            document.getElementsByTagName("hygiene")[0].innerHTML = Math.round(this.jibby.hygiene).toString();
+            document.getElementsByTagName("food")[0].innerHTML = Math.round(this.jibby.food).toString();
+            document.getElementsByTagName("happiness")[0].innerHTML = Math.round(this.jibby.happiness).toString();
+        }
     }
-} 
-
+}
 
 // load
-window.addEventListener("load", function() {
-    let g:Game = new Game();
+window.addEventListener("load", function () {
+    let g: Game = new Game();
 });
